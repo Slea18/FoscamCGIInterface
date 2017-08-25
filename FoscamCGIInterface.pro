@@ -43,4 +43,5 @@ RESOURCES += \
     ressources.qrc
 
 DISTFILES += \
-    COPYING.txt
+    COPYING.txt \
+    README.md
