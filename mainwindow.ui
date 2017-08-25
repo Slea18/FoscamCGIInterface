@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>732</width>
+    <height>1033</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Foscam CGI Interface</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <widget class="QSplitter" name="splitterLog">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QSplitter" name="splitterInfos">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QTabWidget" name="tabWidget">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <widget class="QWidget" name="tab_visualisation">
+               <attribute name="title">
+                <string>Visualisation</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QCheckBox" name="checkBoxVisualisationVideoActive">
+                  <property name="text">
+                   <string>Vidéo active</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                  <item>
+                   <widget class="VlcWidgetVideo" name="widgetVideo" native="true">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_13"/>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_22">
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxParametresImage">
+                      <property name="title">
+                       <string>Paramètres de l'image :</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_18">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_27">
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageLuminosite">
+                           <property name="minimumSize">
+                            <size>
+                             <width>70</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string>Luminosité : </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageLuminositePourcentage">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="text">
+                            <string>XX%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="horizontalSliderVisualisationParametresImageLuminosite">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_28">
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageContraste">
+                           <property name="minimumSize">
+                            <size>
+                             <width>70</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string>Contraste :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageContrastePourcentage">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="text">
+                            <string>XX%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="horizontalSliderVisualisationParametresImageConstraste">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_29">
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageTeinte">
+                           <property name="minimumSize">
+                            <size>
+                             <width>70</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string>Teinte :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageTeintePourcentage">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="text">
+                            <string>XX%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="horizontalSliderVisualisationParametresImageTeinte">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_30">
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageSaturation">
+                           <property name="minimumSize">
+                            <size>
+                             <width>70</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string>Saturation :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageSaturationPourcentage">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="text">
+                            <string>XX%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="horizontalSliderVisualisationParametresImageSaturation">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_31">
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageNettete">
+                           <property name="minimumSize">
+                            <size>
+                             <width>70</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string>Netteté :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelVisualisationParametresImageNettetePourcentage">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="text">
+                            <string>XX%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="horizontalSliderVisualisationParametresImageNettete">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxVisualisationOSD">
+                      <property name="title">
+                       <string>OSD :</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_23">
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxVisualisationOSDTemps">
+                         <property name="text">
+                          <string>Date et heure</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxVisualisationOSDNomCamera">
+                         <property name="text">
+                          <string>Nom caméra</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_5">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_9">
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationListePresets">
+                    <property name="title">
+                     <string>Liste des presets : </string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_10">
+                     <item>
+                      <widget class="QComboBox" name="comboBoxVisualisationListePresets"/>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButtonVisualisationAllerAuPreset">
+                       <property name="text">
+                        <string>Aller au preset</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationZoom">
+                    <property name="title">
+                     <string>Zoom :</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                     <item>
+                      <widget class="QPushButton" name="pushButtonVisualisationZoomIn">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="ressources.qrc">
+                         <normaloff>:/Images/Images/zoom-in.jpg</normaloff>:/Images/Images/zoom-in.jpg</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButtonVisualisationZoomOut">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="ressources.qrc">
+                         <normaloff>:/Images/Images/zoom-out.jpg</normaloff>:/Images/Images/zoom-out.jpg</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_8">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_2">
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationTopLeft">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/TL.png</normaloff>:/Images/Images/TL.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationTop">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/T.png</normaloff>:/Images/Images/T.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationTopRight">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/TR.png</normaloff>:/Images/Images/TR.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationLeft">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/L.png</normaloff>:/Images/Images/L.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationVide">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/C.png</normaloff>:/Images/Images/C.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationRight">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/R.png</normaloff>:/Images/Images/R.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_8">
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationBottomLeft">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/BL.png</normaloff>:/Images/Images/BL.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationBottom">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/B.png</normaloff>:/Images/Images/B.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonVisualisationBottomRight">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="ressources.qrc">
+                          <normaloff>:/Images/Images/BR.png</normaloff>:/Images/Images/BR.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationDureeCommande">
+                    <property name="title">
+                     <string>Durée de la commande (ms) : </string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_14">
+                     <item>
+                      <widget class="QSpinBox" name="spinBoxVisualisationDureeCommande">
+                       <property name="maximum">
+                        <number>1000</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>100</number>
+                       </property>
+                       <property name="value">
+                        <number>200</number>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationRetourner">
+                    <property name="title">
+                     <string>Retourner :</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_20">
+                     <item>
+                      <widget class="QRadioButton" name="radioButtonVisualiserRetournerOui">
+                       <property name="text">
+                        <string>Oui</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="radioButtonVisualiserRetournerNon">
+                       <property name="text">
+                        <string>Non</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationMirroir">
+                    <property name="title">
+                     <string>Mirroir :</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_21">
+                     <item>
+                      <widget class="QRadioButton" name="radioButtonVisualiserMirroirOui">
+                       <property name="text">
+                        <string>Oui</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="radioButtonVisualiserMirroirNon">
+                       <property name="text">
+                        <string>Non</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_configuration">
+               <attribute name="title">
+                <string>Configuration</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QToolBox" name="toolBoxConfiguration">
+                  <property name="currentIndex">
+                   <number>0</number>
+                  </property>
+                  <widget class="QWidget" name="pageInformationsCamera">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>682</width>
+                     <height>572</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Informations sur la caméra</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_19">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationInfosCameraNomProduit">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Nom du produit : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationInfosCameraNomProduit">
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationInfosCameraNomPeripherique">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Nom du périphérique : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationInfosCameraNomPeripherique"/>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationNomPeripheriqueDefinir">
+                        <property name="text">
+                         <string>Définir</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_7">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationInfosCameraVersionFirmware">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Version du firmware : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationInfosCameraVersionFirmware">
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="Line" name="line_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>186</width>
+                     <height>284</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Configuration IP</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxConfigurationIPDHCP">
+                      <property name="text">
+                       <string>DHCP</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_13">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationIPAdresseIP">
+                        <property name="text">
+                         <string>Adresse IP :</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationIPAdresseIP">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_14">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationIPPasserelle">
+                        <property name="text">
+                         <string>Passerelle : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationIPPasserelle">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_15">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationIPMasque">
+                        <property name="text">
+                         <string>Masque : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationIPMasque">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_16">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationIPDNS1">
+                        <property name="text">
+                         <string>DNS1 : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_5">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationIPDNS1">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_17">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationIPDNS2">
+                        <property name="text">
+                         <string>DNS2 : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationIPDNS2">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_18">
+                      <item>
+                       <spacer name="horizontalSpacer_7">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationIPAppliquer">
+                        <property name="text">
+                         <string>Appliquer la configuration</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_9">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="Line" name="line">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_detectionDeMouvement">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>460</width>
+                     <height>610</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Détection de mouvement</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_17">
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxConfigurationDDMActif">
+                      <property name="text">
+                       <string>Actif</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxConfigurationDDMAction">
+                      <property name="title">
+                       <string>Action</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_19">
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxConfigurationDDMActionSonnerie">
+                         <property name="text">
+                          <string>Sonnerie</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxConfigurationDDMActionMail">
+                         <property name="text">
+                          <string>Envoi de mail</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxConfigurationDDMActionCaptureEcran">
+                         <property name="text">
+                          <string>Capture d'écran</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBoxConfigurationDDMActionEnregistrement">
+                         <property name="text">
+                          <string>Enregistrement</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_20">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationDDMSnapInterval">
+                        <property name="text">
+                         <string>Snap Interval : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSpinBox" name="spinBoxConfigurationDDMSnapInterval"/>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxConfigurationDDMSensibilite">
+                      <property name="title">
+                       <string>Sensibilité</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_21">
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationDDMSensibiliteLowest">
+                         <property name="text">
+                          <string>&amp;Lowest</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationDDMSensibiliteLower">
+                         <property name="text">
+                          <string>Lower</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationDDMSensibiliteLow">
+                         <property name="text">
+                          <string>Low</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationDDMSensibiliteNormal">
+                         <property name="text">
+                          <string>Normal</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationDDMSensibiliteHigh">
+                         <property name="text">
+                          <string>Hi&amp;gh</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_23">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationDDMTriggerInterval">
+                        <property name="text">
+                         <string>Trigger Interval : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSpinBox" name="spinBoxConfigurationDDMTriggerInterval"/>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QTableWidget" name="tableWidgetConfigurationDDMProgrammation">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>260</height>
+                       </size>
+                      </property>
+                      <property name="showGrid">
+                       <bool>true</bool>
+                      </property>
+                      <property name="gridStyle">
+                       <enum>Qt::DashLine</enum>
+                      </property>
+                      <property name="columnCount">
+                       <number>48</number>
+                      </property>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>45</number>
+                      </attribute>
+                      <row>
+                       <property name="text">
+                        <string>Lundi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Mardi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Mercredi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Jeudi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Vendredi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Samedi</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>Dimanche</string>
+                       </property>
+                      </row>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_24">
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationDDMProgrammationActiver">
+                        <property name="text">
+                         <string>Activer</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationDDMProgrammationDesctiver">
+                        <property name="text">
+                         <string>Désactiver</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_22">
+                      <item>
+                       <spacer name="horizontalSpacer_10">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationDDMAppliquer">
+                        <property name="text">
+                         <string>Appliquer la configuration</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_11">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="Line" name="line_2">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_4">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_connexion">
+               <attribute name="title">
+                <string>Connexion</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item>
+                 <widget class="QGroupBox" name="groupBoxConnexionConnexion">
+                  <property name="title">
+                   <string>Connexion</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout">
+                     <item>
+                      <widget class="QLabel" name="labelConnexionAdresseIPCamera">
+                       <property name="text">
+                        <string>Adresse IP de la caméra : </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditConnexionAdresseIPCamera">
+                       <property name="inputMask">
+                        <string>000.000.000.000</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_2">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="labelConnexionPortCamera">
+                       <property name="text">
+                        <string>Port : </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditConnexionPortCamera">
+                       <property name="inputMask">
+                        <string>000</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_3">
+                     <item>
+                      <widget class="QLabel" name="labelConnexionUser">
+                       <property name="text">
+                        <string>User : </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditConnexionUser"/>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="labelConnexionPassword">
+                       <property name="text">
+                        <string>Password : </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditConnexionPassword"/>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_25">
+                     <item>
+                      <widget class="QPushButton" name="pushButtonConnexionAppliquer">
+                       <property name="text">
+                        <string>Appliquer</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButtonConnexionSauver">
+                       <property name="text">
+                        <string>Sauver la configuration</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_debug">
+               <attribute name="title">
+                <string>Debug</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_11">
+                  <item>
+                   <widget class="QLabel" name="labelDebugCommande">
+                    <property name="text">
+                     <string>Commande : </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugCommande"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_10">
+                  <item>
+                   <widget class="QLabel" name="labelParam1">
+                    <property name="text">
+                     <string>Paramètre 1 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugParam1"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelDebugValue1">
+                    <property name="text">
+                     <string>Valeur 1 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugValue1"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <widget class="QLabel" name="labelParam2">
+                    <property name="text">
+                     <string>Paramètre 2 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugParam2"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelDebugValue2">
+                    <property name="text">
+                     <string>Valeur 2 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugValue2"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_32">
+                  <item>
+                   <widget class="QLabel" name="labelParam3">
+                    <property name="text">
+                     <string>Paramètre 3 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugParam3"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelDebugValue3">
+                    <property name="text">
+                     <string>Valeur 3 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugValue3"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonDebugEnvoyer">
+                  <property name="text">
+                   <string>Envoyer la commande</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBoxDebugReponse">
+                  <property name="title">
+                   <string>Réponse :</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_12">
+                   <item>
+                    <widget class="QTextEdit" name="textEditDebugReponse"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBoxLog">
+       <property name="title">
+        <string>Log</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTextEdit" name="textEditLog"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>732</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fic&amp;hier</string>
+    </property>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionAfficher_la_fen_tre_de_log"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuOptions"/>
+  </widget>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>&amp;Quitter</string>
+   </property>
+  </action>
+  <action name="actionAfficher_la_fen_tre_de_log">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Afficher la fenêtre de log</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>VlcWidgetVideo</class>
+   <extends>QWidget</extends>
+   <header location="global">VLCQtWidgets/WidgetVideo.h</header>
+   <container>1</container>
+   <slots>
+    <signal>fullscreen()</signal>
+    <slot>toggleFullscreen()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

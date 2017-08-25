@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>Images/B.png</file>
+        <file>Images/BL.png</file>
+        <file>Images/BR.png</file>
+        <file>Images/L.png</file>
+        <file>Images/R.png</file>
+        <file>Images/T.png</file>
+        <file>Images/TL.png</file>
+        <file>Images/TR.png</file>
+        <file>Images/C.png</file>
+        <file>Images/zoom-in.jpg</file>
+        <file>Images/zoom-out.jpg</file>
+        <file>Images/Mirror.png</file>
+        <file>Images/Flip.png</file>
+    </qresource>
+</RCC>
