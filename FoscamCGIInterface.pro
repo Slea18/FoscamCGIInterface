@@ -44,4 +44,5 @@ RESOURCES += \
 
 DISTFILES += \
     COPYING.txt \
-    README.md
+    README.md \
+    .gitignore
