@@ -22,6 +22,8 @@
 #ifndef COMMANDECAMERA_H
 #define COMMANDECAMERA_H
 
+#include "filedownloader.h"
+
 #include <QString>
 #include <QNetworkAccessManager>
 #include <QMap>
@@ -46,13 +48,17 @@ private:
     QNetworkAccessManager* NetworkAccessManager;
     QString Requete;
     QString Commande;
+    T_ParametresCameras ParametresCamera;
+    FileDownloader* File;
 
 private slots:
     void RequeteTerminee(QNetworkReply* P_Reponse);
+    void loadImage(void);
 
 signals:
     void sigLog(QString P_Message);
     void sigReponse(QString Commande, QMap<QString, QString> Reponse);
+    void sigReponseSnapPicture(QString Commande, QImage* Image);
 };
 
 #endif // COMMANDECAMERA_H

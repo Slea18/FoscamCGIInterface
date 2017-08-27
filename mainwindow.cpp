@@ -22,6 +22,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "ddmzones.h"
+
 #include <VLCQtCore/Common.h>
 #include <VLCQtCore/Instance.h>
 #include <VLCQtCore/Media.h>
@@ -30,6 +32,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QDir>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -83,6 +86,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonVisualisationAllerAuPreset, SIGNAL(clicked()), this, SLOT(VisualisationAllerAuPreset()));
     connect(ui->pushButtonVisualisationZoomIn, SIGNAL(clicked()), this, SLOT(VisualisationZoomIn()));
     connect(ui->pushButtonVisualisationZoomOut, SIGNAL(clicked()), this, SLOT(VisualisationZoomOut()));
+    connect(ui->pushButtonVisualisationCaptureEcran, SIGNAL(clicked(bool)), this, SLOT(VisualisationCapture()));
+
     connect(ui->checkBoxVisualisationVideoActive, SIGNAL(toggled(bool)), this, SLOT(VisualisationVideoActive(bool)));
     connect(ui->checkBoxVisualisationOSDTemps, SIGNAL(toggled(bool)), this, SLOT(VisualisationChangerOSD()));
     connect(ui->checkBoxVisualisationOSDNomCamera, SIGNAL(toggled(bool)), this, SLOT(VisualisationChangerOSD()));
@@ -100,6 +105,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonConfigurationDDMAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMAppliquer()));
     connect(ui->pushButtonConfigurationDDMProgrammationActiver, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMProgrammationActiver()));
     connect(ui->pushButtonConfigurationDDMProgrammationDesctiver, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMProgrammationDesactiver()));
+    connect(ui->pushButtonConfigurationDDMDefinirZones, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMDefinirZones()));
 
     connect(ui->pushButtonConnexionAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConnexionAppliquer()));
     connect(ui->pushButtonConnexionSauver, SIGNAL(clicked(bool)), this, SLOT(ConnexionSauver()));
@@ -272,6 +278,31 @@ void MainWindow::TraiterReponseVisualisationOSDRecuperer(QString P_Commande, QMa
     ListeCommande[P_Commande]->deleteLater();
 }
 
+void MainWindow::TraiterReponseVisualisationCapture(QString P_Commande, QImage* P_Image)
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Save File", "./capture.jpg", tr("Jpg Files (*.jpg)"));
+
+    if( fileName != "" )
+    {
+        P_Image->save(fileName);
+        QMessageBox::information(this, "Capture d'écran", "Image sauvegardée");
+    }
+
+    delete P_Image;
+    ListeCommande[P_Commande]->deleteLater();
+}
+
+void MainWindow::TraiterReponseVisualisationCaptureDDM(QString P_Commande, QImage *P_Image)
+{
+
+    DDMZones FenetreDDMZones(DDMListeZones, P_Image, this);
+
+    if( FenetreDDMZones.exec() == QDialog::Accepted )
+        FenetreDDMZones.getZones(DDMListeZones);
+
+    ListeCommande[P_Commande]->deleteLater();
+}
+
 void MainWindow::TraiterReponseDebug(QString P_Reponse)
 {
     ui->textEditDebugReponse->append(P_Reponse);
@@ -321,6 +352,9 @@ void MainWindow::TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMa
                 ui->tableWidgetConfigurationDDMProgrammation->item(Jour, Creneau)->setBackgroundColor(QColor(Qt::green));
         }
     }
+
+    for( int NumArea = 0 ; NumArea < 10 ; NumArea++ )
+        DDMListeZones[NumArea] = P_Reponse["area" + QString::number(NumArea)].toInt();
 
     ListeCommande[P_Commande]->deleteLater();
 }
@@ -492,6 +526,14 @@ void MainWindow::VisualisationChangerOSD()
     ListeCommande["setOSDSetting"]->EnvoyerCommande("setOSDSetting&isEnableTimeStamp=" + isEnableTimeStamp + "&isEnableDevName=" + isEnableDevName);
 }
 
+void MainWindow::VisualisationCapture()
+{
+    ListeCommande["snapPicture"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["snapPicture"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["snapPicture"], SIGNAL(sigReponseSnapPicture(QString,QImage*)), this, SLOT(TraiterReponseVisualisationCapture(QString,QImage*)));
+    ListeCommande["snapPicture"]->EnvoyerCommande("snapPicture");
+}
+
 void MainWindow::VisualisationRetournerMirroirRecuperer()
 {
     ListeCommande["getMirrorAndFlipSetting"] = new CommandeCamera(ParametresCameras, this);
@@ -628,6 +670,9 @@ void MainWindow::ConfigurationDDMAppliquer()
         Commande += "&schedule" + QString::number(Jour) + "=" + QString::number(DonneesDuJour);
     }
 
+    for( int zone = 0 ; zone < 10 ; zone++ )
+        Commande += "&area" + QString::number(zone) + "=" + QString::number(DDMListeZones[zone]);
+
     ListeCommande["setMotionDetectConfig"]->EnvoyerCommande(Commande);
 
 }
@@ -644,6 +689,14 @@ void MainWindow::ConfigurationDDMProgrammationDesactiver()
     QList<QTableWidgetItem *> ListeCreneaux = ui->tableWidgetConfigurationDDMProgrammation->selectedItems();
     for( int i = 0 ; i < ListeCreneaux.count() ; i++ )
         ListeCreneaux[i]->setBackgroundColor(QColor(Qt::white));
+}
+
+void MainWindow::ConfigurationDDMDefinirZones()
+{
+    ListeCommande["snapPicture"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["snapPicture"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["snapPicture"], SIGNAL(sigReponseSnapPicture(QString,QImage*)), this, SLOT(TraiterReponseVisualisationCaptureDDM(QString,QImage*)));
+    ListeCommande["snapPicture"]->EnvoyerCommande("snapPicture");
 }
 
 void MainWindow::ConnexionSauver()

@@ -32,14 +32,18 @@ CommandeCamera::CommandeCamera(T_ParametresCameras P_ParametresCamera, QObject *
 {
     NetworkAccessManager = new QNetworkAccessManager(this);
 
+    ParametresCamera = P_ParametresCamera;
+
+    File  = NULL;
+
     Requete  = "http://";
-    Requete += P_ParametresCamera.AdresseIP;
+    Requete += ParametresCamera.AdresseIP;
     Requete += ":";
-    Requete += P_ParametresCamera.Port;
+    Requete += ParametresCamera.Port;
     Requete += "/cgi-bin/CGIProxy.fcgi?usr=";
-    Requete += P_ParametresCamera.User;
+    Requete += ParametresCamera.User;
     Requete += "&pwd=";
-    Requete += P_ParametresCamera.Password;
+    Requete += ParametresCamera.Password;
     Requete += "&cmd=";
 
     connect(NetworkAccessManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(RequeteTerminee(QNetworkReply*)));
@@ -55,6 +59,8 @@ void CommandeCamera::EnvoyerCommande(QString P_Commande)
 
 CommandeCamera::~CommandeCamera()
 {
+    if( File != NULL )
+        delete File;
     delete NetworkAccessManager;
 }
 
@@ -78,14 +84,33 @@ void CommandeCamera::RequeteTerminee(QNetworkReply* P_Reponse)
         {
             QDomElement DomElement = DomNode.toElement();
             if(!DomElement.isNull())
+            {
                 Reponse[DomElement.tagName()] = DomElement.text();
+            }
             DomNode = DomNode.nextSibling();
         }
 
         int CodeRetour = Reponse["result"].toInt();
         if( CodeRetour == 0 )
         {
-            emit sigReponse(Commande, Reponse);
+            if( Commande == "snapPicture")
+            {
+                int Debut = Donnees.indexOf("img src=");
+                int Fin = Donnees.indexOf(".jpg");
+
+                if( Debut == -1 || Fin == -1)
+                    QMessageBox::critical(NULL, QString("Erreur sur la réponse"), QString("Erreur dans la réponse, voir les logs"));
+                else
+                {
+                    QString Lien = Donnees.mid(Debut + 11, Fin - Debut - 7 );
+                    QUrl imageUrl("http://" + ParametresCamera.AdresseIP + ":" + ParametresCamera.Port + Lien);
+
+                    File = new FileDownloader(imageUrl, this);
+                    connect(File, SIGNAL (downloaded()), this, SLOT (loadImage()));
+                }
+            }
+            else
+                emit sigReponse(Commande, Reponse);
         }
         else
         {
@@ -108,5 +133,14 @@ void CommandeCamera::RequeteTerminee(QNetworkReply* P_Reponse)
 
     P_Reponse->deleteLater();
     P_Reponse = NULL;
+}
+
+void CommandeCamera::loadImage()
+{
+    QImage* image;
+    image = new QImage();
+    image->loadFromData(File->downloadedData());
+
+    emit sigReponseSnapPicture(Commande, image);
 }
 

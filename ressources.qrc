@@ -13,5 +13,7 @@
         <file>Images/zoom-out.jpg</file>
         <file>Images/Mirror.png</file>
         <file>Images/Flip.png</file>
+        <file>Images/DDM_Actif.png</file>
+        <file>Images/DDM_Inactif.png</file>
     </qresource>
 </RCC>

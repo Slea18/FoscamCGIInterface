@@ -28,14 +28,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    commandecamera.cpp
+    commandecamera.cpp \
+    filedownloader.cpp \
+    ddmzones.cpp \
+    ddmzoneswidget.cpp
 
 HEADERS += \
         mainwindow.h \
-    commandecamera.h
+    commandecamera.h \
+    filedownloader.h \
+    ddmzones.h \
+    ddmzoneswidget.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    ddmzones.ui
 
 LIBS += -L/usr/local/lib/ -lVLCQtCore -lVLCQtWidgets
 

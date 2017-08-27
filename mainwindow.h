@@ -57,6 +57,8 @@ private:
     QMap<QString, CommandeCamera*> ListeCommande;
     T_ParametresCameras ParametresCameras;
 
+    int DDMListeZones[10];
+
     void ChargerConnextion(void);
     void TesterConnexion(void);
     void MAJDonnees(void);
@@ -80,6 +82,8 @@ private slots:
     void TraiterReponseVisualisationParametresImageRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseVisualisationRetournerMirroirRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseVisualisationOSDRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseVisualisationCapture(QString P_Commande, QImage* P_Image);
+    void TraiterReponseVisualisationCaptureDDM(QString P_Commande, QImage* P_Image);
 
     void TraiterReponseDebug(QString P_Reponse);
 
@@ -106,6 +110,7 @@ private slots:
     void VisualisationMirroir(bool P_MirroirActif);
     void VisualisationRetourner(bool P_RetournerActif);
     void VisualisationChangerOSD(void);
+    void VisualisationCapture(void);
 
     void ParametresImageChangerContraste(int P_Valeur);
     void ParametresImageChangerLuminosite(int P_Valeur);
@@ -117,6 +122,7 @@ private slots:
     void ConfigurationDDMAppliquer(void);
     void ConfigurationDDMProgrammationActiver(void);
     void ConfigurationDDMProgrammationDesactiver(void);
+    void ConfigurationDDMDefinirZones(void);
 
     void ConnexionSauver(void);
     void ConnexionAppliquer(void);

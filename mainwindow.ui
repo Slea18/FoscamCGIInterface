@@ -38,7 +38,7 @@
             <item>
              <widget class="QTabWidget" name="tabWidget">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_visualisation">
                <attribute name="title">
@@ -65,7 +65,6 @@
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_13"/>
                    </widget>
                   </item>
                   <item>
@@ -315,6 +314,13 @@
                         </widget>
                        </item>
                       </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButtonVisualisationCaptureEcran">
+                      <property name="text">
+                       <string>Prendre une capture</string>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -594,15 +600,15 @@
                 <item>
                  <widget class="QToolBox" name="toolBoxConfiguration">
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>2</number>
                   </property>
                   <widget class="QWidget" name="pageInformationsCamera">
                    <property name="geometry">
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>682</width>
-                     <height>572</height>
+                     <width>288</width>
+                     <height>140</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -960,8 +966,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>460</width>
-                     <height>610</height>
+                     <width>662</width>
+                     <height>649</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -1083,6 +1089,13 @@
                        <widget class="QSpinBox" name="spinBoxConfigurationDDMTriggerInterval"/>
                       </item>
                      </layout>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButtonConfigurationDDMDefinirZones">
+                      <property name="text">
+                       <string>Définir les zones de détection</string>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <widget class="QTableWidget" name="tableWidgetConfigurationDDMProgrammation">
