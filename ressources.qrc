@@ -15,5 +15,6 @@
         <file>Images/Flip.png</file>
         <file>Images/DDM_Actif.png</file>
         <file>Images/DDM_Inactif.png</file>
+        <file>Images/Icone.png</file>
     </qresource>
 </RCC>

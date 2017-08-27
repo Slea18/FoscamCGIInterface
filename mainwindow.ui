@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Foscam CGI Interface</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="ressources.qrc">
+    <normaloff>:/Images/Images/Icone.png</normaloff>:/Images/Images/Icone.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_6">
     <item>

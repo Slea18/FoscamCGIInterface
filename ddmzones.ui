@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Définir les zones pour la détection de mouvement</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="ressources.qrc">
+    <normaloff>:/Images/Images/Icone.png</normaloff>:/Images/Images/Icone.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <spacer name="horizontalSpacer_4">
@@ -121,6 +125,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>
