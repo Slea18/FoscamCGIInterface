@@ -69,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->groupBoxLog->setVisible(false);
 
     ui->tabWidget->setCurrentIndex(0);
+    ui->toolBoxConfiguration->setCurrentIndex(0);
 
     showMaximized();
 

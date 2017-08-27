@@ -11,3 +11,8 @@ Technical information
 
   - Qt 5.3.2
   - Qt Creator v4.3.1
+
+Compatible IP Camera list
+-------------------------
+
+  - FI9828P+V2
