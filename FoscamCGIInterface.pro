@@ -4,6 +4,9 @@
 #
 #-------------------------------------------------
 
+VERSION = 0.1.0
+DEFINES += VERSION_STRING=\\\"$$VERSION\\\"
+
 QT += core gui
 QT += network
 QT += xml
@@ -44,7 +47,9 @@ FORMS += \
         mainwindow.ui \
     ddmzones.ui
 
-LIBS += -L/usr/local/lib/ -lVLCQtCore -lVLCQtWidgets
+LIBS += -lVLCQtCore -lVLCQtWidgets
+
+LIBS += -L/usr/local/lib/
 
 RESOURCES += \
     ressources.qrc
@@ -52,4 +57,5 @@ RESOURCES += \
 DISTFILES += \
     COPYING.txt \
     README.md \
-    .gitignore
+    .gitignore \
+    BUILD.md

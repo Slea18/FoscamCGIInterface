@@ -21,6 +21,7 @@
 
 #include "mainwindow.h"
 #include <QApplication>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,12 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit ()));
+
+    a.setApplicationName("Foscam CGI Interface");
+    a.setApplicationVersion(VERSION_STRING);
+    QCommandLineParser parser;
+    parser.addVersionOption();
+    parser.process(a);
 
     MainWindow w;
     w.show();
