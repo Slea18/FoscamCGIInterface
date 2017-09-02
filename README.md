@@ -11,7 +11,7 @@ This programm was written using the Foscam IPCamera CGI User Guide v1.0.16
 Technical information
 ---------------------
 
-  - Qt 5.3.2
+  - Qt 5.9.1
   - Qt Creator v4.3.1
 
 Compatible IP Camera list
