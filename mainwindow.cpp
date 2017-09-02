@@ -23,6 +23,7 @@
 #include "ui_mainwindow.h"
 
 #include "ddmzones.h"
+#include "dialogmaskarea.h"
 
 #include <VLCQtCore/Common.h>
 #include <VLCQtCore/Instance.h>
@@ -88,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonVisualisationZoomIn, SIGNAL(clicked()), this, SLOT(VisualisationZoomIn()));
     connect(ui->pushButtonVisualisationZoomOut, SIGNAL(clicked()), this, SLOT(VisualisationZoomOut()));
     connect(ui->pushButtonVisualisationCaptureEcran, SIGNAL(clicked(bool)), this, SLOT(VisualisationCapture()));
+    connect(ui->pushButtonVisualisationDefinirMasques, SIGNAL(clicked(bool)), this, SLOT(VisualisationDefinirMasques()));
 
     connect(ui->checkBoxVisualisationVideoActive, SIGNAL(toggled(bool)), this, SLOT(VisualisationVideoActive(bool)));
     connect(ui->checkBoxVisualisationOSDTemps, SIGNAL(toggled(bool)), this, SLOT(VisualisationChangerOSD()));
@@ -112,6 +114,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonConnexionSauver, SIGNAL(clicked(bool)), this, SLOT(ConnexionSauver()));
 
     connect(ui->pushButtonDebugEnvoyer, SIGNAL(clicked()), this, SLOT(DebugEnvoyerCommande()));
+
+    connect(ui->pushButtonLogClear, SIGNAL(clicked(bool)), this, SLOT(LogVider()));
 
     connect(ui->actionAfficher_la_fen_tre_de_log, SIGNAL(toggled(bool)), this, SLOT(MasquerAfficherFenetreLog(bool)));
     connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(close()));
@@ -535,6 +539,13 @@ void MainWindow::VisualisationCapture()
     ListeCommande["snapPicture"]->EnvoyerCommande("snapPicture");
 }
 
+void MainWindow::VisualisationDefinirMasques()
+{
+    DialogMaskArea FenetreMasques(ParametresCameras, this);
+    connect(&FenetreMasques, SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    FenetreMasques.exec();
+}
+
 void MainWindow::VisualisationRetournerMirroirRecuperer()
 {
     ListeCommande["getMirrorAndFlipSetting"] = new CommandeCamera(ParametresCameras, this);
@@ -713,6 +724,11 @@ void MainWindow::ConnexionSauver()
 void MainWindow::ConnexionAppliquer()
 {
     TesterConnexion();
+}
+
+void MainWindow::LogVider()
+{
+    ui->textEditLog->clear();
 }
 
 void MainWindow::DebugEnvoyerCommande()

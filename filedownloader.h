@@ -1,5 +1,5 @@
 /*
- * filedownloader.cpp
+ * filedownloader.h
  * This file is part of FoscamCGIInterface
  *
  * Copyright (C) 2017-2017 Ludovic Girardet

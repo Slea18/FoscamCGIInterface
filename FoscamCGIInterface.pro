@@ -34,18 +34,23 @@ SOURCES += \
     commandecamera.cpp \
     filedownloader.cpp \
     ddmzones.cpp \
-    ddmzoneswidget.cpp
+    ddmzoneswidget.cpp \
+    dialogmaskarea.cpp \
+    graphicsviewzonesmasques.cpp
 
 HEADERS += \
         mainwindow.h \
     commandecamera.h \
     filedownloader.h \
     ddmzones.h \
-    ddmzoneswidget.h
+    ddmzoneswidget.h \
+    dialogmaskarea.h \
+    graphicsviewzonesmasques.h
 
 FORMS += \
         mainwindow.ui \
-    ddmzones.ui
+    ddmzones.ui \
+    dialogmaskarea.ui
 
 LIBS += -lVLCQtCore -lVLCQtWidgets
 

@@ -71,6 +71,9 @@ private:
     void ConfigurationIPRecuperer(void);
     void ConfigurationDDMRecuperer(void);
 
+public slots:
+    void AddLog(QString P_Message);
+
 private slots:
     void ConnexionTimeout(void);
 
@@ -90,7 +93,6 @@ private slots:
     void TraiterReponseConfigurationIPRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
 
-    void AddLog(QString P_Message);
     void MasquerAfficherFenetreLog(bool P_AfficherFenetreLog);
 
     void VisualisationZoomIn(void);
@@ -111,6 +113,7 @@ private slots:
     void VisualisationRetourner(bool P_RetournerActif);
     void VisualisationChangerOSD(void);
     void VisualisationCapture(void);
+    void VisualisationDefinirMasques(void);
 
     void ParametresImageChangerContraste(int P_Valeur);
     void ParametresImageChangerLuminosite(int P_Valeur);
@@ -126,6 +129,8 @@ private slots:
 
     void ConnexionSauver(void);
     void ConnexionAppliquer(void);
+
+    void LogVider(void);
 
     void DebugEnvoyerCommande(void);
 

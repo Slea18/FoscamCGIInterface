@@ -1,5 +1,5 @@
 /*
- * ddmzoneswidget.cpp
+ * graphicsviewzonesmasques.h
  * This file is part of FoscamCGIInterface
  *
  * Copyright (C) 2017-2017 Ludovic Girardet
@@ -19,30 +19,39 @@
  *
  */
 
-#ifndef DDMZONESWIDGET_H
-#define DDMZONESWIDGET_H
+#ifndef GRAPHICSVIEWZONESMASQUES_H
+#define GRAPHICSVIEWZONESMASQUES_H
 
-#include <QWidget>
-#include <QImage>
+#include <QGraphicsView>
 #include <QMouseEvent>
+#include <QPoint>
+#include <QGraphicsRectItem>
 
-class DDMZonesWidget : public QWidget
+#define C_NB_MASQUES 4
+
+class GraphicsViewZonesMasques : public QGraphicsView
 {
     Q_OBJECT
+
 public:
-    explicit DDMZonesWidget(QImage P_Fond, int* P_ListeZones, QWidget *parent = nullptr);
-    void MajListeZones(int* P_ListeZones);
-    void GetListeZones(int* P_ListeZones);
+    explicit GraphicsViewZonesMasques(QGraphicsScene *P_scene, QWidget *parent = Q_NULLPTR);
+    void RetirerMasques(void);
+    int getNbMasques(void);
+    void getMasque(int i, int* x1, int* y1, int* x2, int* y2);
 
 private:
-    QImage Fond;
-    int ListeZones[10];
+    QGraphicsScene *scene;
+    int NbMasquesUtilises;
+    QPointF posDepart[C_NB_MASQUES];
+    QGraphicsRectItem* Zones[C_NB_MASQUES];
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void mouseReleaseEvent( QMouseEvent * event );
-signals:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *event);
 
+signals:
+    void sigNbMasquesRestant(int p);
 };
 
-#endif // DDMZONESWIDGET_H
+#endif // GRAPHICSVIEWZONESMASQUES_H
