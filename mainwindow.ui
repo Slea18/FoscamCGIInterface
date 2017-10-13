@@ -347,6 +347,13 @@
                       </property>
                      </spacer>
                     </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButtonVisualisationRebootCamera">
+                      <property name="text">
+                       <string>Redémarrer la caméra</string>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </item>
                  </layout>

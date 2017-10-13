@@ -72,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
     ui->toolBoxConfiguration->setCurrentIndex(0);
 
+    ProgressDialog = NULL;
+
     showMaximized();
 
     ChargerConnextion();
@@ -90,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonVisualisationZoomOut, SIGNAL(clicked()), this, SLOT(VisualisationZoomOut()));
     connect(ui->pushButtonVisualisationCaptureEcran, SIGNAL(clicked(bool)), this, SLOT(VisualisationCapture()));
     connect(ui->pushButtonVisualisationDefinirMasques, SIGNAL(clicked(bool)), this, SLOT(VisualisationDefinirMasques()));
+    connect(ui->pushButtonVisualisationRebootCamera, SIGNAL(clicked(bool)), this, SLOT(VisualisationRedemarrerCamera()));
 
     connect(ui->checkBoxVisualisationVideoActive, SIGNAL(toggled(bool)), this, SLOT(VisualisationVideoActive(bool)));
     connect(ui->checkBoxVisualisationOSDTemps, SIGNAL(toggled(bool)), this, SLOT(VisualisationChangerOSD()));
@@ -123,6 +126,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    if( ProgressDialog != NULL )
+        delete ProgressDialog;
+
     delete myVlcMediaPlayer;
     delete myVlcMedia;
     delete myVlcInstance;
@@ -189,6 +195,17 @@ void MainWindow::ConnexionTimeout()
     ui->tabWidget->setCurrentIndex(2);
 }
 
+void MainWindow::RebootTimeout()
+{
+    QString Requete;
+    Requete  = "usrBeatHeart&usrName=" + ParametresCameras.User;
+    Requete += "&remoteIp=" + ParametresCameras.AdresseIP;
+    Requete += "&groupId=" + QString::number(qrand());
+
+    TimerAttenteReboot.start(1000);
+    ListeCommande["usrBeatHeart"]->EnvoyerCommande(Requete);
+}
+
 void MainWindow::TraiterReponseTesterConnexion(QString P_Commande, QMap<QString, QString> P_Reponse)
 {
     if( P_Reponse["result"] == "0" )
@@ -198,6 +215,20 @@ void MainWindow::TraiterReponseTesterConnexion(QString P_Commande, QMap<QString,
     }
 
     ListeCommande[P_Commande]->deleteLater();
+}
+
+void MainWindow::TraiterReponseAttenteRetourCamera(QString P_Commande, QMap<QString, QString> P_Reponse)
+{
+    Q_UNUSED(P_Commande);
+    Q_UNUSED(P_Reponse);
+
+    if( ProgressDialog != NULL )
+    {
+        ProgressDialog->setValue(1);
+        delete ProgressDialog;
+        ProgressDialog = NULL;
+        VisualisationVideoActive(true);
+    }
 }
 
 void MainWindow::AfficherVideo()
@@ -544,6 +575,32 @@ void MainWindow::VisualisationDefinirMasques()
     DialogMaskArea FenetreMasques(ParametresCameras, this);
     connect(&FenetreMasques, SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
     FenetreMasques.exec();
+}
+
+void MainWindow::VisualisationRedemarrerCamera()
+{
+    VisualisationVideoActive(false);
+
+    ListeCommande["rebootSystem"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["rebootSystem"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["rebootSystem"]->EnvoyerCommande("rebootSystem");
+
+    ListeCommande["usrBeatHeart"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["usrBeatHeart"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["usrBeatHeart"], SIGNAL(sigReponse(QString, QMap<QString,QString>)), this, SLOT(TraiterReponseAttenteRetourCamera(QString,QMap<QString,QString>)));
+
+    QString Requete;
+    Requete  = "usrBeatHeart&usrName=" + ParametresCameras.User;
+    Requete += "&remoteIp=" + ParametresCameras.AdresseIP;
+    Requete += "&groupId=" + QString::number(qrand());
+
+    ProgressDialog = new QProgressDialog("Attente du redémarrage de la camera ...", QString(), 0, 1, this);
+    ProgressDialog->setWindowModality(Qt::WindowModal);
+    ProgressDialog->setMinimumDuration(0);
+    ProgressDialog->setValue(0);
+
+    connect(&TimerAttenteReboot, SIGNAL(timeout()), this, SLOT(RebootTimeout()));
+    TimerAttenteReboot.start(1000);
 }
 
 void MainWindow::VisualisationRetournerMirroirRecuperer()

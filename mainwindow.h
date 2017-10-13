@@ -26,6 +26,7 @@
 #include <QString>
 #include <QMap>
 #include <QTimer>
+#include <QProgressDialog>
 
 #include "commandecamera.h"
 
@@ -53,9 +54,11 @@ private:
     VlcMediaPlayer *myVlcMediaPlayer;
 
     QTimer TimerTestConnexion;
+    QTimer TimerAttenteReboot;
 
     QMap<QString, CommandeCamera*> ListeCommande;
     T_ParametresCameras ParametresCameras;
+    QProgressDialog* ProgressDialog;
 
     int DDMListeZones[10];
 
@@ -76,8 +79,10 @@ public slots:
 
 private slots:
     void ConnexionTimeout(void);
+    void RebootTimeout(void);
 
     void TraiterReponseTesterConnexion(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseAttenteRetourCamera(QString P_Commande, QMap<QString, QString> P_Reponse);
 
     void TraiterReponseInformationsCameraRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
 
@@ -114,6 +119,7 @@ private slots:
     void VisualisationChangerOSD(void);
     void VisualisationCapture(void);
     void VisualisationDefinirMasques(void);
+    void VisualisationRedemarrerCamera(void);
 
     void ParametresImageChangerContraste(int P_Valeur);
     void ParametresImageChangerLuminosite(int P_Valeur);
