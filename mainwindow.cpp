@@ -116,6 +116,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonConnexionAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConnexionAppliquer()));
     connect(ui->pushButtonConnexionSauver, SIGNAL(clicked(bool)), this, SLOT(ConnexionSauver()));
 
+    connect(ui->radioButtonConfigurationHeureDateSourceNTP, SIGNAL(toggled(bool)), this, SLOT(ConfigurationHeureDateSourceChange()));
+    connect(ui->pushButtonConfigurationHeureDateAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConfigurationHeureDateAppliquer()));
+
     connect(ui->pushButtonDebugEnvoyer, SIGNAL(clicked()), this, SLOT(DebugEnvoyerCommande()));
 
     connect(ui->pushButtonLogClear, SIGNAL(clicked(bool)), this, SLOT(LogVider()));
@@ -187,6 +190,7 @@ void MainWindow::MAJDonnees()
     ConfigurationInfosCameraRecuperer();
     ConfigurationDDMRecuperer();
     ConfigurationIPRecuperer();
+    ConfigurationDateHeureRecuperer();
 }
 
 void MainWindow::ConnexionTimeout()
@@ -391,6 +395,57 @@ void MainWindow::TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMa
 
     for( int NumArea = 0 ; NumArea < 10 ; NumArea++ )
         DDMListeZones[NumArea] = P_Reponse["area" + QString::number(NumArea)].toInt();
+
+    ListeCommande[P_Commande]->deleteLater();
+}
+
+void MainWindow::TraiterReponseConfigurationDateHeureRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse)
+{
+    if( P_Reponse["timeSource"] == "0" )
+    {
+        ui->lineEditConfigurationHeureDateAdresseServeurNTP->setEnabled(true);
+        ui->groupBoxConfigurationHeureDateDate->setEnabled(false);
+        ui->radioButtonConfigurationHeureDateSourceNTP->setChecked(true);
+    }
+    else
+    {
+        ui->lineEditConfigurationHeureDateAdresseServeurNTP->setEnabled(false);
+        ui->groupBoxConfigurationHeureDateDate->setEnabled(true);
+        ui->radioButtonConfigurationHeureDateSourceManuel->setChecked(true);
+    }
+
+    ui->lineEditConfigurationHeureDateAdresseServeurNTP->setText(P_Reponse["ntpServer"]);
+    ui->comboBoxConfigurationHeureDateFormatDate->setCurrentIndex( P_Reponse["dateFormat"].toInt() );
+    ui->comboBoxConfigurationHeureDateFormatHeures->setCurrentIndex( P_Reponse["timeFormat"].toInt() );
+
+    int timeZone = 11 + P_Reponse["timeZone"].toInt() / 3600;
+    ui->comboBoxConfigurationHeureDateFuseauHoraire->setCurrentIndex(timeZone);
+
+    ui->radioButtonConfigurationHeureDateGestionHeureEteOff->setChecked( P_Reponse["isDst"] == "0" );
+    ui->radioButtonConfigurationHeureDateGestionHeureEteOn->setChecked( P_Reponse["isDst"] == "1" );
+
+    if( P_Reponse["dateFormat"] == "0" )
+    {
+        ui->lineEditConfigurationHeureDateDateDateG->setText( P_Reponse["year"] );
+        ui->lineEditConfigurationHeureDateDateDateM->setText( P_Reponse["mon"] );
+        ui->lineEditConfigurationHeureDateDateDateD->setText( P_Reponse["day"] );
+    }
+    else if( P_Reponse["dateFormat"] == "1" )
+    {
+        ui->lineEditConfigurationHeureDateDateDateG->setText( P_Reponse["day"] );
+        ui->lineEditConfigurationHeureDateDateDateM->setText( P_Reponse["mon"] );
+        ui->lineEditConfigurationHeureDateDateDateD->setText( P_Reponse["year"] );
+    }
+    else if( P_Reponse["dateFormat"] == "2" )
+    {
+        ui->lineEditConfigurationHeureDateDateDateG->setText( P_Reponse["mon"] );
+        ui->lineEditConfigurationHeureDateDateDateM->setText( P_Reponse["day"] );
+        ui->lineEditConfigurationHeureDateDateDateD->setText( P_Reponse["year"] );
+    }
+
+    ui->lineEditConfigurationHeureDateDateHeure->setText(P_Reponse["hour"]);
+    ui->lineEditConfigurationHeureDateDateMinute->setText(P_Reponse["minute"]);
+    ui->lineEditConfigurationHeureDateDateSecondes->setText(P_Reponse["sec"]);
 
     ListeCommande[P_Commande]->deleteLater();
 }
@@ -695,6 +750,15 @@ void MainWindow::ConfigurationDDMRecuperer()
     ListeCommande["getMotionDetectConfig"]->EnvoyerCommande("getMotionDetectConfig");
 }
 
+void MainWindow::ConfigurationDateHeureRecuperer()
+{
+    ListeCommande["getSystemTime"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["getSystemTime"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["getSystemTime"], SIGNAL(sigReponse(QString,QMap<QString,QString>)), this, SLOT(TraiterReponseConfigurationDateHeureRecuperer(QString,QMap<QString,QString>)));
+    ListeCommande["getSystemTime"]->EnvoyerCommande("getSystemTime");
+
+}
+
 void MainWindow::ConfigurationDDMAppliquer()
 {
     ListeCommande["setMotionDetectConfig"] = new CommandeCamera(ParametresCameras, this);
@@ -743,7 +807,6 @@ void MainWindow::ConfigurationDDMAppliquer()
         Commande += "&area" + QString::number(zone) + "=" + QString::number(DDMListeZones[zone]);
 
     ListeCommande["setMotionDetectConfig"]->EnvoyerCommande(Commande);
-
 }
 
 void MainWindow::ConfigurationDDMProgrammationActiver()
@@ -766,6 +829,60 @@ void MainWindow::ConfigurationDDMDefinirZones()
     connect(ListeCommande["snapPicture"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
     connect(ListeCommande["snapPicture"], SIGNAL(sigReponseSnapPicture(QString,QImage*)), this, SLOT(TraiterReponseVisualisationCaptureDDM(QString,QImage*)));
     ListeCommande["snapPicture"]->EnvoyerCommande("snapPicture");
+}
+
+void MainWindow::ConfigurationHeureDateSourceChange()
+{
+    if( ui->radioButtonConfigurationHeureDateSourceNTP->isChecked() )
+    {
+        ui->lineEditConfigurationHeureDateAdresseServeurNTP->setEnabled(true);
+        ui->groupBoxConfigurationHeureDateDate->setEnabled(false);
+    }
+    else
+    {
+        ui->lineEditConfigurationHeureDateAdresseServeurNTP->setEnabled(false);
+        ui->groupBoxConfigurationHeureDateDate->setEnabled(true);
+    }
+}
+
+void MainWindow::ConfigurationHeureDateAppliquer()
+{
+    ListeCommande["setSystemTime"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["setSystemTime"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+
+    QString Commande = "setSystemTime&timeSource=";
+    Commande += ui->radioButtonConfigurationHeureDateSourceManuel->isChecked() ? "1" : "0";
+    Commande += "&ntpServer="  + ui->lineEditConfigurationHeureDateAdresseServeurNTP->text();
+    Commande += "&dateFormat=" + QString::number(ui->comboBoxConfigurationHeureDateFormatDate->currentIndex());
+    Commande += "&timeFormat=" + QString::number(ui->comboBoxConfigurationHeureDateFormatHeures->currentIndex());
+    Commande += "&timeZone="   + QString::number(3600*(ui->comboBoxConfigurationHeureDateFuseauHoraire->currentIndex() - 11));
+    Commande += "&isDst=";
+    Commande += ui->radioButtonConfigurationHeureDateGestionHeureEteOn->isChecked() ? "1" : "0";
+
+    if( ui->comboBoxConfigurationHeureDateFormatDate->currentIndex() == 0 )
+    {
+        Commande += "&year="   + ui->lineEditConfigurationHeureDateDateDateG->text();
+        Commande += "&mon="    + ui->lineEditConfigurationHeureDateDateDateM->text();
+        Commande += "&day= "   + ui->lineEditConfigurationHeureDateDateDateD->text();
+    }
+    if( ui->comboBoxConfigurationHeureDateFormatDate->currentIndex() == 1 )
+    {
+        Commande += "&year="   + ui->lineEditConfigurationHeureDateDateDateD->text();
+        Commande += "&mon="    + ui->lineEditConfigurationHeureDateDateDateM->text();
+        Commande += "&day= "   + ui->lineEditConfigurationHeureDateDateDateG->text();
+    }
+    if( ui->comboBoxConfigurationHeureDateFormatDate->currentIndex() == 2 )
+    {
+        Commande += "&year="   + ui->lineEditConfigurationHeureDateDateDateD->text();
+        Commande += "&mon="    + ui->lineEditConfigurationHeureDateDateDateG->text();
+        Commande += "&day= "   + ui->lineEditConfigurationHeureDateDateDateM->text();
+    }
+
+    Commande += "&hour="       + ui->lineEditConfigurationHeureDateDateHeure->text();
+    Commande += "&minute="     + ui->lineEditConfigurationHeureDateDateMinute->text();
+    Commande += "&sec="        + ui->lineEditConfigurationHeureDateDateSecondes->text();
+
+    ListeCommande["setSystemTime"]->EnvoyerCommande(Commande);
 }
 
 void MainWindow::ConnexionSauver()

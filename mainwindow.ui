@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>732</width>
+    <width>735</width>
     <height>1033</height>
    </rect>
   </property>
@@ -42,7 +42,7 @@
             <item>
              <widget class="QTabWidget" name="tabWidget">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tab_visualisation">
                <attribute name="title">
@@ -625,8 +625,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>288</width>
-                     <height>140</height>
+                     <width>309</width>
+                     <height>143</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -730,13 +730,13 @@
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="page">
+                  <widget class="QWidget" name="pageConfigurationIP">
                    <property name="geometry">
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>186</width>
-                     <height>284</height>
+                     <width>197</width>
+                     <height>291</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -979,13 +979,627 @@
                     </item>
                    </layout>
                   </widget>
+                  <widget class="QWidget" name="pageHeureDate">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>685</width>
+                     <height>549</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Heure / Date</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_13">
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxConfigurationHeureDateSource">
+                      <property name="title">
+                       <string>Source</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_43">
+                       <item>
+                        <spacer name="horizontalSpacer_14">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationHeureDateSourceNTP">
+                         <property name="text">
+                          <string>Serveur NTP</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationHeureDateSourceManuel">
+                         <property name="text">
+                          <string>&amp;Manuel</string>
+                         </property>
+                         <property name="checked">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_24">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_34">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationHeureDateServeurNTP">
+                        <property name="text">
+                         <string>Serveur NTP :</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_15">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationHeureDateAdresseServeurNTP">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="inputMask">
+                         <string>000.000.000.000</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_36">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationHeureDateFormatDate">
+                        <property name="text">
+                         <string>Format de date : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_16">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxConfigurationHeureDateFormatDate">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>YYYY-MM-DD</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>DD/MM/YYYY</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>MM/DD/YYYY</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_37">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationHeureDateFormatHeures">
+                        <property name="text">
+                         <string>Format des heures : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_17">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxConfigurationHeureDateFormatHeures">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>12 heures</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>24 heures</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_38">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationHeureDateFuseauHoraire">
+                        <property name="text">
+                         <string>Fuseau horaire : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_18">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBoxConfigurationHeureDateFuseauHoraire">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>GMT+11:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+10:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+09:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+08:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+07:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+06:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+05:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+04:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+03:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+02:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT+01:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-01:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-02:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-03:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-04:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-05:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-06:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-07:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-08:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-09:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-10:00</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GMT-11:00</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxConfigurationHeureDateGestionHeureEte">
+                      <property name="title">
+                       <string>Gestion de l'heure d'été</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_35">
+                       <item>
+                        <spacer name="horizontalSpacer_25">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationHeureDateGestionHeureEteOn">
+                         <property name="text">
+                          <string>Actif</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="radioButtonConfigurationHeureDateGestionHeureEteOff">
+                         <property name="text">
+                          <string>Inactif</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_19">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBoxConfigurationHeureDateDate">
+                      <property name="title">
+                       <string>Date</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_24">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_40">
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateDateDate">
+                           <property name="text">
+                            <string>Date :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_20">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateDateG">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateSlash1">
+                           <property name="text">
+                            <string>/</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateDateM">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateSlash2">
+                           <property name="text">
+                            <string>/</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateDateD">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_41">
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateDateHeure">
+                           <property name="text">
+                            <string>Heure : </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_21">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateHeure">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateSlash3">
+                           <property name="text">
+                            <string>:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateMinute">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="labelConfigurationHeureDateSlash4">
+                           <property name="text">
+                            <string>.</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEditConfigurationHeureDateDateSecondes">
+                           <property name="maximumSize">
+                            <size>
+                             <width>50</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_42">
+                      <item>
+                       <spacer name="horizontalSpacer_23">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationHeureDateAppliquer">
+                        <property name="text">
+                         <string>Appliquer la configuration</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_22">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_6">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
                   <widget class="QWidget" name="page_detectionDeMouvement">
                    <property name="geometry">
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>662</width>
-                     <height>649</height>
+                     <width>477</width>
+                     <height>659</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -1593,8 +2207,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>732</width>
-     <height>29</height>
+     <width>735</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -1605,7 +2219,7 @@
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Options</string>
+     <string>Option&amp;s</string>
     </property>
     <addaction name="actionAfficher_la_fen_tre_de_log"/>
    </widget>

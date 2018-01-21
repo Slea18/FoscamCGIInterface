@@ -73,6 +73,7 @@ private:
     void ConfigurationInfosCameraRecuperer(void);
     void ConfigurationIPRecuperer(void);
     void ConfigurationDDMRecuperer(void);
+    void ConfigurationDateHeureRecuperer(void);
 
 public slots:
     void AddLog(QString P_Message);
@@ -97,6 +98,7 @@ private slots:
 
     void TraiterReponseConfigurationIPRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseConfigurationDateHeureRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
 
     void MasquerAfficherFenetreLog(bool P_AfficherFenetreLog);
 
@@ -132,6 +134,8 @@ private slots:
     void ConfigurationDDMProgrammationActiver(void);
     void ConfigurationDDMProgrammationDesactiver(void);
     void ConfigurationDDMDefinirZones(void);
+    void ConfigurationHeureDateSourceChange(void);
+    void ConfigurationHeureDateAppliquer(void);
 
     void ConnexionSauver(void);
     void ConnexionAppliquer(void);
