@@ -24,6 +24,7 @@
 
 #include "ddmzones.h"
 #include "dialogmaskarea.h"
+#include "dialogajouterpoursuite.h"
 
 #include <VLCQtCore/Common.h>
 #include <VLCQtCore/Instance.h>
@@ -34,6 +35,8 @@
 #include <QSettings>
 #include <QDir>
 #include <QFileDialog>
+#include <QInputDialog>
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -87,12 +90,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonVisualisationTopLeft, SIGNAL(clicked()), this, SLOT(VisualisationPTZTopLeft()));
     connect(ui->pushButtonVisualisationTop, SIGNAL(clicked()), this, SLOT(VisualisationPTZTop()));
     connect(ui->pushButtonVisualisationTopRight, SIGNAL(clicked()), this, SLOT(VisualisationPTZTopRight()));
+    connect(ui->pushButtonVisualisationMAJPreset, SIGNAL(clicked()), this, SLOT(VisualisationMAJPresetList()));
     connect(ui->pushButtonVisualisationAllerAuPreset, SIGNAL(clicked()), this, SLOT(VisualisationAllerAuPreset()));
+    connect(ui->pushButtonVisualisationDefinirPreset, SIGNAL(clicked()), this, SLOT(VisualisationDefinirPreset()));
+    connect(ui->pushButtonVisualisationSupprimerPreset, SIGNAL(clicked()), this, SLOT(VisualisationSupprimerPreset()));
     connect(ui->pushButtonVisualisationZoomIn, SIGNAL(clicked()), this, SLOT(VisualisationZoomIn()));
     connect(ui->pushButtonVisualisationZoomOut, SIGNAL(clicked()), this, SLOT(VisualisationZoomOut()));
     connect(ui->pushButtonVisualisationCaptureEcran, SIGNAL(clicked(bool)), this, SLOT(VisualisationCapture()));
     connect(ui->pushButtonVisualisationDefinirMasques, SIGNAL(clicked(bool)), this, SLOT(VisualisationDefinirMasques()));
     connect(ui->pushButtonVisualisationRebootCamera, SIGNAL(clicked(bool)), this, SLOT(VisualisationRedemarrerCamera()));
+
+    connect(ui->pushButtonVisualisationPoursuiteDemarrer, SIGNAL(clicked(bool)), this, SLOT(VisualisationPoursuiteDemarrer()));
+    connect(ui->pushButtonVisualisationPoursuiteArreter, SIGNAL(clicked(bool)), this, SLOT(VisualisationPoursuiteArreter()));
+    connect(ui->pushButtonVisualisationPoursuiteAjouter, SIGNAL(clicked(bool)), this, SLOT(VisualisationPoursuiteAjouter()));
 
     connect(ui->checkBoxVisualisationVideoActive, SIGNAL(toggled(bool)), this, SLOT(VisualisationVideoActive(bool)));
     connect(ui->checkBoxVisualisationOSDTemps, SIGNAL(toggled(bool)), this, SLOT(VisualisationChangerOSD()));
@@ -108,6 +118,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->radioButtonVisualiserRetournerOui, SIGNAL(toggled(bool)), this, SLOT(VisualisationRetourner(bool)));
 
     connect(ui->pushButtonConfigurationNomPeripheriqueDefinir, SIGNAL(clicked(bool)), this, SLOT(ConfigurationNomPeripheriqueDefinir()));
+    connect(ui->pushButtonConfigurationFTPAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConfigurationFTPAppliquer()));
+    connect(ui->pushButtonConfigurationFTPTester, SIGNAL(clicked(bool)), this, SLOT(ConfigurationFTPTester()));
     connect(ui->pushButtonConfigurationDDMAppliquer, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMAppliquer()));
     connect(ui->pushButtonConfigurationDDMProgrammationActiver, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMProgrammationActiver()));
     connect(ui->pushButtonConfigurationDDMProgrammationDesctiver, SIGNAL(clicked(bool)), this, SLOT(ConfigurationDDMProgrammationDesactiver()));
@@ -164,7 +176,7 @@ void MainWindow::TesterConnexion()
     QString Requete;
     Requete  = "usrBeatHeart&usrName=" + Parametres.User;
     Requete += "&remoteIp=" + Parametres.AdresseIP;
-    Requete += "&groupId=" + QString::number(qrand());
+    Requete += "&groupId=" + QString::number(QRandomGenerator::global()->generate());
 
     ListeCommande["usrBeatHeart"]->EnvoyerCommande(Requete);
 
@@ -183,6 +195,7 @@ void MainWindow::MAJDonnees()
 
     AfficherVideo();
     VisualisationMajListePresetsRecuperer();
+    VisualisationMajListeCruiseMapRecuperer();
     VisualisationParametresImageRecuperer();
     VisualisationRetournerMirroirRecuperer();
     VisualisationOSDRecuperer();
@@ -190,6 +203,7 @@ void MainWindow::MAJDonnees()
     ConfigurationInfosCameraRecuperer();
     ConfigurationDDMRecuperer();
     ConfigurationIPRecuperer();
+    ConfigurationFTPRecuperer();
     ConfigurationDateHeureRecuperer();
 }
 
@@ -204,7 +218,7 @@ void MainWindow::RebootTimeout()
     QString Requete;
     Requete  = "usrBeatHeart&usrName=" + ParametresCameras.User;
     Requete += "&remoteIp=" + ParametresCameras.AdresseIP;
-    Requete += "&groupId=" + QString::number(qrand());
+    Requete += "&groupId=" + QString::number(QRandomGenerator::global()->generate());
 
     TimerAttenteReboot.start(1000);
     ListeCommande["usrBeatHeart"]->EnvoyerCommande(Requete);
@@ -273,6 +287,20 @@ void MainWindow::TraiterReponseVisualiserMajListePresets(QString P_Commande, QMa
 
         if( value != "" )
             ui->comboBoxVisualisationListePresets->addItem(value);
+    }
+
+    ListeCommande[P_Commande]->deleteLater();
+}
+
+void MainWindow::TraiterReponseVisualiserMajListeCruiseMap(QString P_Commande, QMap<QString, QString> P_Reponse)
+{
+    ui->comboBoxVisualisationPoursuiteMaps->clear();
+
+    for( int i = 0 ; i < 8 ; i++ )
+    {
+        QString value = P_Reponse["map" + QString::number(i)];
+        if( value != "" )
+            ui->comboBoxVisualisationPoursuiteMaps->addItem(value);
     }
 
     ListeCommande[P_Commande]->deleteLater();
@@ -359,6 +387,30 @@ void MainWindow::TraiterReponseConfigurationIPRecuperer(QString P_Commande, QMap
     ListeCommande[P_Commande]->deleteLater();
 }
 
+void MainWindow::TraiterReponseConfigurationFTPRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse)
+{
+    ui->lineEditConfigurationFTPAdresseIP->setText(P_Reponse["ftpAddr"]);
+    ui->lineEditConfigurationFTPPort->setText(P_Reponse["ftpPort"]);
+    if( P_Reponse["mode"] == "0" )
+        ui->radioButtonConfigurationFTPModePASV->setChecked(true);
+    else
+        ui->radioButtonConfigurationFTPModePORT->setChecked(true);
+    ui->lineEditConfigurationFTPLogin->setText(P_Reponse["userName"]);
+    ui->lineEditConfigurationFTPMdp->setText(P_Reponse["password"]);
+
+    ListeCommande[P_Commande]->deleteLater();
+}
+
+void MainWindow::TraiterReponseConfigurationFTPTester(QString P_Commande, QMap<QString, QString> P_Reponse)
+{
+    if( P_Reponse["testResult"] == "0" )
+        QMessageBox::information(this, "FTP Test", "Le test a réussi");
+    else
+        QMessageBox::warning(this, "FTP Test", "Le test a échoué");
+
+    ListeCommande[P_Commande]->deleteLater();
+}
+
 void MainWindow::TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse)
 {
     ui->checkBoxConfigurationDDMActif->setChecked( P_Reponse["isEnable"] == "1" );
@@ -389,7 +441,7 @@ void MainWindow::TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMa
         {
             long tmp = ((long)1<<Creneau);
             if( DonneesDuJour & tmp )
-                ui->tableWidgetConfigurationDDMProgrammation->item(Jour, Creneau)->setBackgroundColor(QColor(Qt::green));
+                ui->tableWidgetConfigurationDDMProgrammation->item(Jour, Creneau)->setBackground(QColor(Qt::green));
         }
     }
 
@@ -555,6 +607,11 @@ void MainWindow::VisualisationPTZBottomRight()
     QTimer::singleShot(ui->spinBoxVisualisationDureeCommande->value(), this, SLOT(VisualisationPTZStop()));
 }
 
+void MainWindow::VisualisationMAJPresetList()
+{
+    VisualisationMajListePresetsRecuperer();
+}
+
 void MainWindow::VisualisationMajListePresetsRecuperer()
 {
     ListeCommande["getPTZPresetPointList"] = new CommandeCamera(ParametresCameras, this);
@@ -563,11 +620,43 @@ void MainWindow::VisualisationMajListePresetsRecuperer()
     ListeCommande["getPTZPresetPointList"]->EnvoyerCommande("getPTZPresetPointList");
 }
 
+void MainWindow::VisualisationMajListeCruiseMapRecuperer()
+{
+    ListeCommande["ptzGetCruiseMapList"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzGetCruiseMapList"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["ptzGetCruiseMapList"], SIGNAL(sigReponse(QString,QMap<QString,QString>)), this, SLOT(TraiterReponseVisualiserMajListeCruiseMap(QString, QMap<QString,QString>)));
+    ListeCommande["ptzGetCruiseMapList"]->EnvoyerCommande("ptzGetCruiseMapList");
+}
+
 void MainWindow::VisualisationAllerAuPreset()
 {
     ListeCommande["ptzGotoPresetPoint"] = new CommandeCamera(ParametresCameras, this);
     connect(ListeCommande["ptzGotoPresetPoint"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
     ListeCommande["ptzGotoPresetPoint"]->EnvoyerCommande("ptzGotoPresetPoint&name=" + ui->comboBoxVisualisationListePresets->currentText());
+}
+
+void MainWindow::VisualisationDefinirPreset()
+{
+    QString NomPreset = QInputDialog::getText(this, "Nom du preset", "Définir le nom du preset");
+    if( NomPreset.isEmpty() )
+        return;
+
+    ListeCommande["ptzAddPresetPoint"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzAddPresetPoint"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["ptzAddPresetPoint"]->EnvoyerCommande("ptzAddPresetPoint&name=" + NomPreset);
+
+    VisualisationMajListePresetsRecuperer();
+}
+
+void MainWindow::VisualisationSupprimerPreset()
+{
+    ListeCommande["ptzDeletePresetPoint"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzDeletePresetPoint"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["ptzDeletePresetPoint"]->EnvoyerCommande("ptzDeletePresetPoint&name=" + ui->comboBoxVisualisationListePresets->currentText());
+
+    ui->comboBoxVisualisationListePresets->removeItem(ui->comboBoxVisualisationListePresets->currentIndex());
+
+    VisualisationMajListePresetsRecuperer();
 }
 
 void MainWindow::VisualisationPTZStop()
@@ -647,7 +736,7 @@ void MainWindow::VisualisationRedemarrerCamera()
     QString Requete;
     Requete  = "usrBeatHeart&usrName=" + ParametresCameras.User;
     Requete += "&remoteIp=" + ParametresCameras.AdresseIP;
-    Requete += "&groupId=" + QString::number(qrand());
+    Requete += "&groupId=" + QString::number(QRandomGenerator::global()->generate());
 
     ProgressDialog = new QProgressDialog("Attente du redémarrage de la camera ...", QString(), 0, 1, this);
     ProgressDialog->setWindowModality(Qt::WindowModal);
@@ -656,6 +745,40 @@ void MainWindow::VisualisationRedemarrerCamera()
 
     connect(&TimerAttenteReboot, SIGNAL(timeout()), this, SLOT(RebootTimeout()));
     TimerAttenteReboot.start(1000);
+}
+
+void MainWindow::VisualisationPoursuiteDemarrer()
+{
+    ListeCommande["ptzStartCruise"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzStartCruise"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["ptzStartCruise"]->EnvoyerCommande("ptzStartCruise&mapName=" + ui->comboBoxVisualisationPoursuiteMaps->currentText());
+}
+
+void MainWindow::VisualisationPoursuiteArreter()
+{
+    ListeCommande["ptzStopCruise"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzStopCruise"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["ptzStopCruise"]->EnvoyerCommande("ptzStopCruise");
+}
+
+void MainWindow::VisualisationPoursuiteAjouter()
+{
+    QStringList listPreset;
+    for( int i = 0 ; i < ui->comboBoxVisualisationListePresets->count() ; i++ )
+        listPreset.append(ui->comboBoxVisualisationListePresets->itemText(i));
+
+    DialogAjouterPoursuite win(ParametresCameras, listPreset, this);
+    connect(&win, SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    win.exec();
+
+    VisualisationMajListeCruiseMapRecuperer();
+}
+
+void MainWindow::VisualisationPoursuiteSupprimer()
+{
+    ListeCommande["ptzDelCruiseMap"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["ptzDelCruiseMap"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    ListeCommande["ptzDelCruiseMap"]->EnvoyerCommande("ptzDelCruiseMap&name=" + ui->comboBoxVisualisationPoursuiteMaps->currentText());
 }
 
 void MainWindow::VisualisationRetournerMirroirRecuperer()
@@ -734,12 +857,52 @@ void MainWindow::ConfigurationNomPeripheriqueDefinir()
     ListeCommande["setDevName"]->EnvoyerCommande("setDevName&devName=" + ui->lineEditConfigurationInfosCameraNomPeripherique->text());
 }
 
+void MainWindow::ConfigurationFTPAppliquer()
+{
+    ListeCommande["setFtpConfig"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["setFtpConfig"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    QString Commande = "setFtpConfig&ftpAddr=" + ui->lineEditConfigurationFTPAdresseIP->text();
+    Commande += "&ftpPort=" + ui->lineEditConfigurationFTPPort->text();
+    if( ui->radioButtonConfigurationFTPModePASV->isChecked() )
+        Commande += "&mode=0";
+    else
+        Commande += "&mode=1";
+    Commande += "&userName=" + ui->lineEditConfigurationFTPLogin->text();
+    Commande += "&password=" + ui->lineEditConfigurationFTPMdp->text();
+    ListeCommande["setFtpConfig"]->EnvoyerCommande(Commande);
+}
+
+void MainWindow::ConfigurationFTPTester()
+{
+    ListeCommande["testFtpServer"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["testFtpServer"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["testFtpServer"], SIGNAL(sigReponse(QString,QMap<QString,QString>)), this, SLOT(TraiterReponseConfigurationFTPTester(QString,QMap<QString,QString>)));
+    QString Commande = "testFtpServer&ftpAddr=" + ui->lineEditConfigurationFTPAdresseIP->text();
+    Commande += "&ftpPort=" + ui->lineEditConfigurationFTPPort->text();
+    if( ui->radioButtonConfigurationFTPModePASV->isChecked() )
+        Commande += "&mode=0";
+    else
+        Commande += "&mode=1";
+    Commande += "&userName=" + ui->lineEditConfigurationFTPLogin->text();
+    Commande += "&password=" + ui->lineEditConfigurationFTPMdp->text();
+    ListeCommande["testFtpServer"]->EnvoyerCommande(Commande);
+
+}
+
 void MainWindow::ConfigurationIPRecuperer()
 {
     ListeCommande["getIPInfo"] = new CommandeCamera(ParametresCameras, this);
     connect(ListeCommande["getIPInfo"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
     connect(ListeCommande["getIPInfo"], SIGNAL(sigReponse(QString,QMap<QString,QString>)), this, SLOT(TraiterReponseConfigurationIPRecuperer(QString,QMap<QString,QString>)));
     ListeCommande["getIPInfo"]->EnvoyerCommande("getIPInfo");
+}
+
+void MainWindow::ConfigurationFTPRecuperer()
+{
+    ListeCommande["getFtpConfig"] = new CommandeCamera(ParametresCameras, this);
+    connect(ListeCommande["getFtpConfig"], SIGNAL(sigLog(QString)), this, SLOT(AddLog(QString)));
+    connect(ListeCommande["getFtpConfig"], SIGNAL(sigReponse(QString,QMap<QString,QString>)), this, SLOT(TraiterReponseConfigurationFTPRecuperer(QString,QMap<QString,QString>)));
+    ListeCommande["getFtpConfig"]->EnvoyerCommande("getFtpConfig");
 }
 
 void MainWindow::ConfigurationDDMRecuperer()
@@ -797,7 +960,7 @@ void MainWindow::ConfigurationDDMAppliquer()
         for( int Creneau = 0 ; Creneau < 48 ; Creneau++ )
         {
             long tmp = ((long)1<<Creneau);
-            if( ui->tableWidgetConfigurationDDMProgrammation->item(Jour, Creneau)->backgroundColor() == QColor(Qt::green) )
+            if( ui->tableWidgetConfigurationDDMProgrammation->item(Jour, Creneau)->background() == QColor(Qt::green) )
                 DonneesDuJour |= tmp;
         }
         Commande += "&schedule" + QString::number(Jour) + "=" + QString::number(DonneesDuJour);
@@ -813,14 +976,14 @@ void MainWindow::ConfigurationDDMProgrammationActiver()
 {
     QList<QTableWidgetItem *> ListeCreneaux = ui->tableWidgetConfigurationDDMProgrammation->selectedItems();
     for( int i = 0 ; i < ListeCreneaux.count() ; i++ )
-        ListeCreneaux[i]->setBackgroundColor(QColor(Qt::green));
+        ListeCreneaux[i]->setBackground(QColor(Qt::green));
 }
 
 void MainWindow::ConfigurationDDMProgrammationDesactiver()
 {
     QList<QTableWidgetItem *> ListeCreneaux = ui->tableWidgetConfigurationDDMProgrammation->selectedItems();
     for( int i = 0 ; i < ListeCreneaux.count() ; i++ )
-        ListeCreneaux[i]->setBackgroundColor(QColor(Qt::white));
+        ListeCreneaux[i]->setBackground(QColor(Qt::white));
 }
 
 void MainWindow::ConfigurationDDMDefinirZones()
@@ -919,6 +1082,8 @@ void MainWindow::DebugEnvoyerCommande()
         Requete += "&" + ui->lineEditDebugParam2->text() + "=" + ui->lineEditDebugValue2->text();
     if( ui->lineEditDebugParam3->text() != "" && ui->lineEditDebugValue3->text() != "" )
         Requete += "&" + ui->lineEditDebugParam3->text() + "=" + ui->lineEditDebugValue3->text();
+    if( ui->lineEditDebugParam4->text() != "" && ui->lineEditDebugValue4->text() != "" )
+        Requete += "&" + ui->lineEditDebugParam4->text() + "=" + ui->lineEditDebugValue4->text();
 
     ListeCommande[ui->lineEditDebugCommande->text()]->EnvoyerCommande(Requete);
 }

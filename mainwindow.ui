@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
+    <width>1721</width>
     <height>1033</height>
    </rect>
   </property>
@@ -367,14 +367,115 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_10">
                      <item>
-                      <widget class="QComboBox" name="comboBoxVisualisationListePresets"/>
+                      <layout class="QHBoxLayout" name="horizontalLayout_39">
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationMAJPreset">
+                         <property name="text">
+                          <string>MAJ</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="comboBoxVisualisationListePresets">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>200</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationAllerAuPreset">
+                         <property name="text">
+                          <string>Aller au preset</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButtonVisualisationAllerAuPreset">
-                       <property name="text">
-                        <string>Aller au preset</string>
-                       </property>
-                      </widget>
+                      <layout class="QHBoxLayout" name="horizontalLayout_44">
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationDefinirPreset">
+                         <property name="text">
+                          <string>Ajouter ce point</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationSupprimerPreset">
+                         <property name="text">
+                          <string>Supprimer ce preset</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBoxVisualisationPoursuite">
+                    <property name="title">
+                     <string>Poursuite :</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_25">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_46">
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationPoursuiteDemarrer">
+                         <property name="text">
+                          <string>Démarrer</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationPoursuiteArreter">
+                         <property name="text">
+                          <string>Arrêter</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_47">
+                       <item>
+                        <widget class="QLabel" name="labelVisualisationPoursuiteMap">
+                         <property name="text">
+                          <string>Trajectoire :</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="comboBoxVisualisationPoursuiteMaps"/>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_48">
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationPoursuiteAjouter">
+                         <property name="text">
+                          <string>Ajouter une traj.</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonVisualisationPoursuiteSupprimer">
+                         <property name="text">
+                          <string>Supprimer une traj.</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </item>
                     </layout>
                    </widget>
@@ -625,7 +726,7 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>309</width>
+                     <width>313</width>
                      <height>143</height>
                     </rect>
                    </property>
@@ -735,8 +836,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>197</width>
-                     <height>291</height>
+                     <width>202</width>
+                     <height>292</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -979,13 +1080,259 @@
                     </item>
                    </layout>
                   </widget>
+                  <widget class="QWidget" name="pageFTPConfig">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1661</width>
+                     <height>564</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Configuration FTP</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_26">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_52">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationFTPAdresseIP">
+                        <property name="text">
+                         <string>Adresse IP du serveur FTP : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_29">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationFTPAdresseIP">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_51">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationFTPPort">
+                        <property name="text">
+                         <string>Port : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_28">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationFTPPort">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_54">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationFTPMode">
+                        <property name="text">
+                         <string>Mode : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_32">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioButtonConfigurationFTPModePORT">
+                        <property name="text">
+                         <string>PORT</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioButtonConfigurationFTPModePASV">
+                        <property name="text">
+                         <string>PASV</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_50">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationFTPLogin">
+                        <property name="text">
+                         <string>Login : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_27">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationFTPLogin">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_49">
+                      <item>
+                       <widget class="QLabel" name="labelConfigurationFTPMdp">
+                        <property name="text">
+                         <string>Mot de passe : </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_26">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEditConfigurationFTPMdp">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_53">
+                      <item>
+                       <spacer name="horizontalSpacer_30">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationFTPTester">
+                        <property name="text">
+                         <string>Tester la connexion</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonConfigurationFTPAppliquer">
+                        <property name="text">
+                         <string>Appliquer la configuration</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_31">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_7">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>316</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
                   <widget class="QWidget" name="pageHeureDate">
                    <property name="geometry">
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>685</width>
-                     <height>549</height>
+                     <width>272</width>
+                     <height>478</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -1598,8 +1945,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>477</width>
-                     <height>659</height>
+                     <width>515</width>
+                     <height>662</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -1747,7 +2094,7 @@
                        <number>48</number>
                       </property>
                       <attribute name="horizontalHeaderDefaultSectionSize">
-                       <number>45</number>
+                       <number>49</number>
                       </attribute>
                       <row>
                        <property name="text">
@@ -2123,6 +2470,30 @@
                  </layout>
                 </item>
                 <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_45">
+                  <item>
+                   <widget class="QLabel" name="labelParam4">
+                    <property name="text">
+                     <string>Paramètre 4 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugParam4"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelDebugValue4">
+                    <property name="text">
+                     <string>Valeur 4 :</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditDebugValue4"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
                  <widget class="QPushButton" name="pushButtonDebugEnvoyer">
                   <property name="text">
                    <string>Envoyer la commande</string>
@@ -2207,7 +2578,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>735</width>
+     <width>1721</width>
      <height>30</height>
     </rect>
    </property>

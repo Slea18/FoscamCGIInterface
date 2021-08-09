@@ -116,7 +116,8 @@ void DialogMaskArea::Appliquer()
 
     CommandeSetActif = new CommandeCamera(ParametresCameras, this);
     connect(CommandeSetActif, SIGNAL(sigLog(QString)), this, SLOT(SendLog(QString)));
-    Commande = "setOSDMask&isEnableOSDMask=" + ui->checkBoxMasqueActif->isChecked() ? "1" : "0";
+    QString Enable = ui->checkBoxMasqueActif->isChecked() ? "1" : "0";
+    Commande = "setOSDMask&isEnableOSDMask=" + Enable;
     CommandeSetActif->EnvoyerCommande(Commande);
     CommandeSetActif->deleteLater();
 }

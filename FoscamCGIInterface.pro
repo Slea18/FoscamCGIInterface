@@ -29,6 +29,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    dialogajouterpoursuite.cpp \
         main.cpp \
         mainwindow.cpp \
     commandecamera.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
     graphicsviewzonesmasques.cpp
 
 HEADERS += \
+    dialogajouterpoursuite.h \
         mainwindow.h \
     commandecamera.h \
     filedownloader.h \
@@ -48,6 +50,7 @@ HEADERS += \
     graphicsviewzonesmasques.h
 
 FORMS += \
+    dialogajouterpoursuite.ui \
         mainwindow.ui \
     ddmzones.ui \
     dialogmaskarea.ui

@@ -67,11 +67,13 @@ private:
     void MAJDonnees(void);
     void AfficherVideo(void);
     void VisualisationMajListePresetsRecuperer(void);
+    void VisualisationMajListeCruiseMapRecuperer(void);
     void VisualisationParametresImageRecuperer(void);
     void VisualisationRetournerMirroirRecuperer(void);
     void VisualisationOSDRecuperer(void);
     void ConfigurationInfosCameraRecuperer(void);
     void ConfigurationIPRecuperer(void);
+    void ConfigurationFTPRecuperer(void);
     void ConfigurationDDMRecuperer(void);
     void ConfigurationDateHeureRecuperer(void);
 
@@ -88,6 +90,7 @@ private slots:
     void TraiterReponseInformationsCameraRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
 
     void TraiterReponseVisualiserMajListePresets(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseVisualiserMajListeCruiseMap(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseVisualisationParametresImageRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseVisualisationRetournerMirroirRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseVisualisationOSDRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
@@ -97,6 +100,8 @@ private slots:
     void TraiterReponseDebug(QString P_Reponse);
 
     void TraiterReponseConfigurationIPRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseConfigurationFTPRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
+    void TraiterReponseConfigurationFTPTester(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseConfigurationDDMRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
     void TraiterReponseConfigurationDateHeureRecuperer(QString P_Commande, QMap<QString, QString> P_Reponse);
 
@@ -113,7 +118,10 @@ private slots:
     void VisualisationPTZBottomLeft(void);
     void VisualisationPTZBottom(void);
     void VisualisationPTZBottomRight(void);
+    void VisualisationMAJPresetList(void);
     void VisualisationAllerAuPreset(void);
+    void VisualisationDefinirPreset(void);
+    void VisualisationSupprimerPreset(void);
     void VisualisationPTZStop(void);
     void VisualisationVideoActive(bool P_VideoActive);
     void VisualisationMirroir(bool P_MirroirActif);
@@ -122,6 +130,10 @@ private slots:
     void VisualisationCapture(void);
     void VisualisationDefinirMasques(void);
     void VisualisationRedemarrerCamera(void);
+    void VisualisationPoursuiteDemarrer(void);
+    void VisualisationPoursuiteArreter(void);
+    void VisualisationPoursuiteAjouter(void);
+    void VisualisationPoursuiteSupprimer(void);
 
     void ParametresImageChangerContraste(int P_Valeur);
     void ParametresImageChangerLuminosite(int P_Valeur);
@@ -130,6 +142,8 @@ private slots:
     void ParametresImageChangerTeinte(int P_Valeur);
 
     void ConfigurationNomPeripheriqueDefinir(void);
+    void ConfigurationFTPAppliquer(void);
+    void ConfigurationFTPTester(void);
     void ConfigurationDDMAppliquer(void);
     void ConfigurationDDMProgrammationActiver(void);
     void ConfigurationDDMProgrammationDesactiver(void);
